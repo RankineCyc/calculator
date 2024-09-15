@@ -33,6 +33,7 @@ body {
     background-color: azure;
     opacity: 60%;
     border-radius: 10px;
+    overflow: hidden;
 
     display: flex;
     justify-content: right;
