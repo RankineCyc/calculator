@@ -3,11 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculator</title>
     <link rel="stylesheet" href="styles.css"></link>
     <script src="javascript.js" defer></script>
 </head>
 <body>
-    <h1>Test</h1>
+    <div id="mainContainer">
+        <div id="numberDisplayContainer" class="row">
+            <h1 id="numberDisplay">0</h1>
+        </div>
+        <div id="buttonsContainer">
+            <div class="row">
+                <button class="functionButton">AC</button>
+                <button class="functionButton">+/-</button>
+                <button class="functionButton">%</button>
+                <button class="functionButton">/</button>
+            </div>
+            <div class="row">
+                <button class="numberButton">7</button>
+                <button class="numberButton">8</button>
+                <button class="numberButton">9</button>
+                <button class="functionButton">*</button>
+            </div>
+            <div class="row">
+                <button class="numberButton">4</button>
+                <button class="numberButton">5</button>
+                <button class="numberButton">6</button>
+                <button class="functionButton">-</button>
+            </div>
+            <div class="row">
+                <button class="numberButton">1</button>
+                <button class="numberButton">2</button>
+                <button class="numberButton">3</button>
+                <button class="functionButton">+</button>
+            </div>
+            <div class="row">
+                <button class="numberButton" style="flex: 2">0</button>
+                <button class="functionButton">.</button>
+                <button class="functionButton">=</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

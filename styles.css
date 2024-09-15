@@ -1,3 +1,73 @@
-h1 {
-    color: red;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mainContainer {
+    width: 400px;
+    height: 500px;
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+#numberDisplayContainer {
+    background-color: azure;
+    opacity: 60%;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    cursor: default;
+}
+
+#numberDisplay {
+    height: 90%;
+    font-size: 80px;
+}
+
+#buttonsContainer {
+    flex: 1;
+}
+
+.row {
+    width: 100%;
+    height: calc(100%/5);
+
+    display: flex;
+}
+
+button {
+    height: 100%;
+    border-radius: 10px;
+    flex: 1;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.functionButton {
+    background-color: orange;
+}
+
+.numberButton {
+    background-color: azure;
 }
