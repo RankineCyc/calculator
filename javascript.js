@@ -11,6 +11,11 @@ function updateDisplayText(newDisplayText) {
     let displayTextField = document.querySelector("#numberDisplay");
 
     eraseDisplayText();
+
+    const lastShownChar = 7
+    if (newDisplayText.length > lastShownChar) {
+        newDisplayText = newDisplayText.slice(0, lastShownChar) + "...";
+    }
     displayTextField.textContent = newDisplayText;
 }
 
@@ -27,20 +32,44 @@ function performFunction() {
     } else if (desiredOperation == ".") {
         console.log("Making Float");
     } else {
-        console.log("Executing Operation");
-        operate(desiredOperation);
+        if (calculatorQueue.length >= 3) {
+            operate(calculatorQueue[1]);
+        } 
+
+        if (this.textContent != "=") {
+            modifyQueueOperator(this.textContent);
+        }
     }
 }
 
 function operate(operator) {
-    console.log(calculatorQueue.length)
-    if (calculatorQueue.length >= 3) {
-        // Update [0] with the result of the operation, then clear, then add operand.
-        clearOld();
+
+    calculatorQueue[calculatorQueue.length - 1] = Number(calculatorQueue[calculatorQueue.length - 1]);
+    calculatorQueue[0] = Number(calculatorQueue[0]);
+
+    if (operator == "+") {
+        calculatorQueue[0] = calculatorQueue[calculatorQueue.length-1] + calculatorQueue[0];
+    } else if (operator == "-") {
+        calculatorQueue[0] = calculatorQueue[calculatorQueue.length-1] - calculatorQueue[0];
+    } else if (operator == "*") {
+        calculatorQueue[0] = calculatorQueue[calculatorQueue.length-1] * calculatorQueue[0];
+    } else if (operator == "/") {
+        calculatorQueue[0] = calculatorQueue[calculatorQueue.length-1] / calculatorQueue[0];
+    }
+    clearOld();
+
+    calculatorQueue[0] = String(calculatorQueue[0]);
+    updateDisplayText(calculatorQueue[0]);
+}
+
+function modifyQueueOperator(operator) {
+
+    if (calculatorQueue.length == 2) {
+        calculatorQueue[0] = operator;
+    } else {
+        calculatorQueue = [operator].concat(calculatorQueue);
     }
 
-    calculatorQueue = [operator].concat(calculatorQueue);
-    console.log(calculatorQueue);
 }
 
 function modifyQueueNumber(num) {
@@ -57,8 +86,6 @@ function modifyQueueNumber(num) {
         updateDisplayText(calculatorQueue[0]);
     }
 
-
-    console.log(calculatorQueue);
 }
 
 function stripLeading0s(num) {
@@ -73,7 +100,7 @@ function stripLeading0s(num) {
 }
 
 function clearOld() {
-    calculatorQueue = calculatorQueue[0];
+    calculatorQueue = [calculatorQueue[0]];
 }
 
 let allNumberButtons = document.querySelectorAll(".numberButton")
