@@ -14,7 +14,8 @@ function updateDisplayText(newDisplayText) {
 
     const lastShownChar = 7
     if (newDisplayText.length > lastShownChar) {
-        newDisplayText = newDisplayText.slice(0, lastShownChar) + "...";
+        newDisplayText = String(Math.round(newDisplayText*100000) / 100000);
+        newDisplayText = newDisplayText.slice(0, lastShownChar);
     }
     displayTextField.textContent = newDisplayText;
 }
@@ -27,12 +28,11 @@ function performFunction() {
         emptyQueue();
         clearOperatorButton();
     } else if (desiredOperation == "+/-") {
-        console.log("Changing Sign");
         modifySign();
     } else if (desiredOperation == "%") {
         console.log("Making Percentage");
     } else if (desiredOperation == ".") {
-        console.log("Making Float");
+        makeFloat();
     } else {
         if (calculatorQueue.length >= 3) {
             operate(calculatorQueue[1]);
@@ -105,9 +105,24 @@ function modifySign() {
     }
 }
 
+function makeFloat() {
+    if (calculatorQueue.length == 1 && !calculatorQueue[0].includes(".")) {
+        calculatorQueue[0] = calculatorQueue[0].concat(".");
+        updateDisplayText(calculatorQueue[0]);
+    } else if (calculatorQueue.length == 2 && !calculatorQueue[2].includes(".")) {
+        calculatorQueue[2] = calculatorQueue[2].concat(".");
+        updateDisplayText(calculatorQueue[2]);
+    } else {
+        if (!calculatorQueue[0].includes(".")) {
+            calculatorQueue[0] = calculatorQueue[0].concat(".");
+            updateDisplayText(calculatorQueue[0]);
+        }
+    }
+}
+
 function stripLeading0s(num) {
     num = num.split("");
-    if (num.findIndex(i => i == "0") == 0 && num.length > 1){
+    if (num.findIndex(i => i == "0") == 0 && num.length > 1 && !num.includes(".")){
         num = num.slice(1, num.length);
         num = num.join("")
     } else {
