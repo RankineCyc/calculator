@@ -28,6 +28,7 @@ function performFunction() {
         clearOperatorButton();
     } else if (desiredOperation == "+/-") {
         console.log("Changing Sign");
+        modifySign();
     } else if (desiredOperation == "%") {
         console.log("Making Percentage");
     } else if (desiredOperation == ".") {
@@ -89,6 +90,19 @@ function modifyQueueNumber(num) {
         updateDisplayText(calculatorQueue[0]);
     }
 
+}
+
+function modifySign() {
+    if (calculatorQueue.length == 1) {
+        calculatorQueue[0] = String(-1 * Number(calculatorQueue[0]));
+        updateDisplayText(calculatorQueue[0]);
+    } else if (calculatorQueue.length == 2) {
+        calculatorQueue[1] = String(-1 * Number(calculatorQueue[1]));
+        updateDisplayText(calculatorQueue[1]);
+    } else {
+        calculatorQueue[0] = String(-1 * Number(calculatorQueue[0]));
+        updateDisplayText(calculatorQueue[0]);
+    }
 }
 
 function stripLeading0s(num) {
