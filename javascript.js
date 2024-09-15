@@ -30,7 +30,7 @@ function performFunction() {
     } else if (desiredOperation == "+/-") {
         modifySign();
     } else if (desiredOperation == "%") {
-        console.log("Making Percentage");
+        makePercent();
     } else if (desiredOperation == ".") {
         makeFloat();
     } else {
@@ -117,6 +117,19 @@ function makeFloat() {
             calculatorQueue[0] = calculatorQueue[0].concat(".");
             updateDisplayText(calculatorQueue[0]);
         }
+    }
+}
+
+function makePercent() {
+    if (calculatorQueue.length == 1) {
+        calculatorQueue[0] = calculatorQueue[0]/100;
+        updateDisplayText(calculatorQueue[0]);
+    } else if (calculatorQueue.length == 2) {
+        calculatorQueue[2] = calculatorQueue[2]/100
+        updateDisplayText(calculatorQueue[2]);
+    } else {
+        calculatorQueue[0] = calculatorQueue[0]/100;
+        updateDisplayText(calculatorQueue[0]);
     }
 }
 
