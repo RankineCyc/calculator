@@ -18,6 +18,7 @@ function updateDisplayText(newDisplayText) {
         newDisplayText = newDisplayText.slice(0, lastShownChar);
     }
     displayTextField.textContent = newDisplayText;
+    updateEqPreview();
 }
 
 function performFunction() {
@@ -73,7 +74,7 @@ function modifyQueueOperator(operator) {
     } else {
         calculatorQueue = [operator].concat(calculatorQueue);
     }
-
+    updateEqPreview();
 }
 
 function modifyQueueNumber(num) {
@@ -157,6 +158,11 @@ function clearOperatorButton() {
 
 function depressOperatorButton() {
     this.classList.add("depressedOperator");
+}
+
+function updateEqPreview() {
+    let equationPreview = document.querySelector("#equationPreview");
+    equationPreview.textContent = calculatorQueue.slice().reverse().join(" ");
 }
 
 let allNumberButtons = document.querySelectorAll(".numberButton")
