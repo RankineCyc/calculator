@@ -109,9 +109,10 @@ function makeFloat() {
     if (calculatorQueue.length == 1 && !calculatorQueue[0].includes(".")) {
         calculatorQueue[0] = calculatorQueue[0].concat(".");
         updateDisplayText(calculatorQueue[0]);
-    } else if (calculatorQueue.length == 2 && !calculatorQueue[2].includes(".")) {
-        calculatorQueue[2] = calculatorQueue[2].concat(".");
-        updateDisplayText(calculatorQueue[2]);
+    } else if (calculatorQueue.length == 2) {
+        calculatorQueue = ["0"].concat(calculatorQueue);
+        calculatorQueue[0] = calculatorQueue[0].concat(".");
+        updateDisplayText(calculatorQueue[0]);
     } else {
         if (!calculatorQueue[0].includes(".")) {
             calculatorQueue[0] = calculatorQueue[0].concat(".");
