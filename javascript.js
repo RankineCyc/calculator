@@ -25,6 +25,7 @@ function performFunction() {
     if (desiredOperation == "AC"){
         eraseDisplayText();
         emptyQueue();
+        clearOperatorButton();
     } else if (desiredOperation == "+/-") {
         console.log("Changing Sign");
     } else if (desiredOperation == "%") {
@@ -60,12 +61,14 @@ function operate(operator) {
 
     calculatorQueue[0] = String(calculatorQueue[0]);
     updateDisplayText(calculatorQueue[0]);
+    clearOperatorButton();
 }
 
 function modifyQueueOperator(operator) {
 
     if (calculatorQueue.length == 2) {
         calculatorQueue[0] = operator;
+        clearOperatorButton();
     } else {
         calculatorQueue = [operator].concat(calculatorQueue);
     }
@@ -103,6 +106,16 @@ function clearOld() {
     calculatorQueue = [calculatorQueue[0]];
 }
 
+function clearOperatorButton() {
+    allOperatorButtons.forEach(element => {
+        element.classList.remove("depressedOperator");
+    })
+}
+
+function depressOperatorButton() {
+    this.classList.add("depressedOperator");
+}
+
 let allNumberButtons = document.querySelectorAll(".numberButton")
 allNumberButtons.forEach(element => {
     element.addEventListener("click", () => {
@@ -118,5 +131,9 @@ allFunctionButtons.forEach(element => {
     element.addEventListener("click", performFunction);
 });
 
+let allOperatorButtons = document.querySelectorAll(".operatorButton");
+allOperatorButtons.forEach(element => {
+    element.addEventListener("click", depressOperatorButton);
+});
 
 let calculatorQueue = ["0"];
